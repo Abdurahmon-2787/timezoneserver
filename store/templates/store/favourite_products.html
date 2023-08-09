@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block header_text %}
+{% include 'components/header_text.html' %}
+
+{% endblock header_text %}
+
+
+{% block main_menu%}
+{% include 'components/main_menu.html' %}
+{% endblock main_menu%}
+
+{% block header_main %}
+{% include 'components/header_menu.html' %}
+{% endblock header_main %}
+
+
+{% block main %}
+{% include 'components/_slider.html' %}
+
+<section class="category_products">
+    <div class="container">
+        <h3 class="section__title text center ny-5">
+            Yoqtirgan mahsulotlar
+        </h3>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                {% for product in products %}
+                {% include 'store/components/_product_card.html' %}
+                {% empty %}
+                <p>Siz hali yoqtirgan tovaringizni belgilamadingiz</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFtKho9WDHPMVHLZV9MgJ_HMO5eEHA3AFkw&usqp=CAU" alt="">
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% include 'components/_video_area.html' %}
+<hr>
+{% include 'store/components/_shop_method.html' %}
+{% endblock main %}
+
+{% block footer %}
+{% include 'components/_footer_search.html' %}
+{% include 'components/_footer.html' %}
+{% endblock footer %}

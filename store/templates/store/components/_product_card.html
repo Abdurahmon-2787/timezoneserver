@@ -1,0 +1,53 @@
+{% load static %}
+
+{% load store_tags %}
+
+<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+    <a class="product-card-detail" href="{{ product.get_absolute_url }}">
+        <div class="single-popular-items mb-50 text-center">
+
+            <div class="popular-img">
+                <img src="{{ product.get_photo }}" alt="">
+                <div class="img-cap">
+                <span>
+                    Batafsil ma'lumot
+                </span>
+                </div>
+                {% if request.user.is_authenticated %}
+                {% get_favourite_products request.user as fav_products %}
+                <div class="favorit-items">
+                    {% if product in fav_products %}
+                    <span class="flaticon-heart">
+                        <a href="{% url 'save_or_delete' product.slug %}">
+                            <button>
+                                <img src="{% static 'store/img/like.png' %}" alt="" width="20" height="18">
+                            </button>
+                        </a>
+                    </span>
+                    {% else %}
+                    <span class="flaticon-heart">
+                        <button>
+                            <a href="{% url 'save_or_delete' product.slug %}"></a>
+                        </button>
+                    </span>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="favorit-items">
+                    <span class="flaticon-heart">
+                        <a href="{% url 'login_registration' %}">
+                        </a>
+                    </span>
+                </div>
+                {% endif %}
+            </div>
+            <div class="popular-caption">
+                <h5 class="product_card-name">{{ product.title }}</h5>
+                <h6 class="product_card-colour">Rangi/Materiali: {{ product.colour }}</h6>
+                <h6 class="product_card-quantity">Ombordagi soni: {{ product.quantity }}</h6>
+                <span>Narxi:  {{ product.price }}$</span>
+            </div>
+        </div>
+    </a>
+</div>
+

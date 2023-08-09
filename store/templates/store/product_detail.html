@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block header_text %}
+{% include 'components/header_text.html' %}
+
+{% endblock header_text %}
+
+
+{% block main_menu%}
+{% include 'components/main_menu.html' %}
+
+{% endblock main_menu%}
+
+{% block header_main %}
+{% include 'components/header_menu.html' %}
+{% endblock header_main %}
+
+
+{% block main %}
+
+{% include 'components/_product_detail_slider.html' %}
+<br>
+{% include 'store/components/_product_detail.html' %}
+<br>
+{% include 'store/components/_brand_info.html' %}
+<br>
+<br>
+{% if reviews %}
+{% include 'store/components/_comments.html' %}
+{% endif %}
+<br>
+{% if request.user.is_authenticated %}
+<div class="container">
+    <h3>Izoh qoldiring...</h3>
+    <form action="{% url 'save_review' product.slug %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ review_form.text }}
+        <button type="submit" class="btn btn-success">Izohni qoldirish</button>
+    </form>
+</div>
+{% endif %}
+<br>
+<br>
+
+{% include 'components/_new_product.html' %}
+<br>
+<br>
+
+{% include 'store/components/_shop_method.html' %}
+{% endblock main %}
+
+{% block footer %}
+{% include 'components/_footer_search.html' %}
+{% include 'components/_footer.html' %}
+{% endblock footer %}

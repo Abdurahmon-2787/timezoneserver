@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block header_text %}
+{% include 'components/header_text.html' %}
+
+{% endblock header_text %}
+
+
+{% block main_menu%}
+{% include 'components/main_menu.html' %}
+{% endblock main_menu%}
+
+{% block header_main %}
+{% include 'components/header_menu.html' %}
+{% endblock header_main %}
+
+
+{% block main %}
+
+<section class="login_part section_padding ">
+    {% if messages %}
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}">
+            {{ message}}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="container">
+
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6">
+                <div class="login_part_text text-center">
+                    <div class="login_part_text_iner">
+                        <h2>Do'konimizda yangimisiz?</h2>
+                        <p>Hozirgi kunda odamlar bir birlarining kiyinish va yurish turishiga
+                            qarab muomalada bo'lishida siz o'z imidjingizni yaxshilashni xoxlaysizmi?
+                            Unda hoziroq ro'yxatdan o'ting agar o'tmagan bo'lsangiz</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="login_part_form">
+                    <div class="login_part_form_iner">
+                        <h3>Hush kelibsiz ! <br>
+                            Akkauntga kirish..</h3>
+                        <form class="row contact_form" action="{% url 'login' %}" method="post" novalidate="novalidate" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-12 form-group p_star">
+                                {{ login_form.username }}
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                {{ login_form.password }}
+                            </div>
+                            <div class="col-md-12 form-group">
+
+                                <button type="submit" value="submit" class="btn btn-primary">
+                                    <a href="{% url 'login_registration' %}">Kirish</a>
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6">
+
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="login_part_form">
+                    <div class="registration">
+                        <h3>Hush kelibsiz ! <br>
+                            Iltimos hoziroq ro'yxatdan o'ting</h3>
+                        <form class="row contact_form" action="{% url 'register' %}" method="post" novalidate="novalidate" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-12 form-group p_star">
+                                {{ register_form.username }}
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                {{ register_form.password1 }}
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                {{ register_form.password2 }}
+                            </div>
+                            <div class="col-md-12 form-group">
+
+                                <button type="submit" value="submit" class="btn_3">
+                                    Ro'yxatdan o'tish
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock main %}
+
+{% block footer %}
+{% include 'components/_footer_search.html' %}
+{% include 'components/_footer.html' %}
+{% endblock footer %}

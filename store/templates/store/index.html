@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block header_text %}
+{% include 'components/header_text.html' %}
+
+{% endblock header_text %}
+
+
+{% block main_menu%}
+{% include 'components/main_menu.html' %}
+{% endblock main_menu%}
+
+{% block header_main %}
+{% include 'components/header_menu.html' %}
+{% endblock header_main %}
+
+
+{% block main %}
+
+{% include 'components/_slider.html' %}
+{% include 'components/_gallery_area.html' %}
+
+<div class="popular-items section-padding30">
+    <div class="container">
+        <!-- Section tittle -->
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10">
+                <div class="section-tittle mb-70 text-center">
+                    <h2>TIME ZONE soatlari</h2>
+                </div>
+            </div>
+        </div>
+        {% for category in categories %}
+        <section class="products-section">
+            <!-- SECTION CHAIN COLLECTION START -->
+            {% for subcategory in category.subcategory.all %}
+            <h2 class="main_title text-center">{{ subcategory.title }}</h2>
+            <div class="container">
+                <div class="row">
+                    {% for product in subcategory.products.all %}
+                    {% include 'store/components/_product_card.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endfor %}
+        <div class="row justify-content-center">
+            <div class="room-btn pt-70">
+                {% for category in categories %}
+                <a href="{{ category.get_absolute_url }}" class="btn view-btn1">Yana soatlar ko'rish..</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'components/_video_area.html' %}
+<hr>
+{% include 'store/components/_shop_method.html' %}
+{% endblock main %}
+
+{% block footer %}
+{% include 'components/_footer_search.html' %}
+{% include 'components/_footer.html' %}
+{% endblock footer %}
+

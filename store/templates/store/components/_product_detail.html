@@ -1,0 +1,18 @@
+<section class="product_detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {% include 'store/components/_product_detail_slider.html' %}
+            </div>
+            <div class="col-md-6">
+                {% include 'store/components/_product_detail_info.html' %}
+                <p class="product_detail-guarantee">30 kun ichida qaytarb berish mumkin</p>
+                {% if product.quantity > 0 %}
+                <a href="{% url 'to_cart' product.pk 'add' %}" class="product_detail-buy_btn btn-success">Harid qilish</a>
+                {% else %}
+<a href=""      <a href="{% url 'index' %}" class="product_detail-buy_btn btn-success">Hozirda mavjud emas</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>

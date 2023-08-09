@@ -1,0 +1,37 @@
+{% load static %}
+
+<div class="slider-area ">
+    <div class="slider-active">
+        <!-- Single Slider -->
+        <div class="single-slider slider-height d-flex align-items-center slide-bg">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <div class="hero__caption">
+                            <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">O'zingizga mos
+                                bo'lgan
+                                soatlarni buyerdan topishingiz mumkin</h1>
+                            <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">Bizning soatlarimiz
+                                Jahonning eng oldi brendlaridan tashkil topgan va o'zingiz uchun mos bo'lgan soatlarning
+                                eng
+                                sifatlilarini harid qilish imkoniyatini qo'ldan boy bermang</p>
+                            <!-- Hero-btn -->
+                            <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s"
+                                 data-duration="2000ms">
+                                {% for category in categories %}
+                                <a href="{{ category.get_absolute_url }}" class="btn hero-btn">Hoziroq harid qiling!</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                        <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
+                            <img src="{% static 'store/img/hero/watch.png' %}" alt="" class=" heartbeat">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

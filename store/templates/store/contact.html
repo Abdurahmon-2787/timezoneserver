@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block header_text %}
+{% include 'components/header_text.html' %}
+
+{% endblock header_text %}
+
+
+{% block main_menu%}
+{% include 'components/main_menu.html' %}
+{% endblock main_menu%}
+
+{% block header_main %}
+{% include 'components/header_menu.html' %}
+{% endblock header_main %}
+
+
+{% block main %}
+{% if request.user.is_authenticated %}
+<section class="contact-section">
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="contact-title">Shu tablitsani to'ldirishingizni so'raymiz</h2>
+            </div>
+
+            <div class="col-lg-8">
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <form method="post" action="{% url 'save_contact' %}" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h5>
+                                            {{ form.text }}
+                                        </h5>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h5>
+                                            {{ form.contact }}
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h5>
+                                            {{ form.email }}
+                                        </h5>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success">Izohni qoldirish</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-12 offset-lg-1">
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-home"></i></span>
+                    <div class="media-body">
+                        <h3>Tashkent, Uzbekistan.</h3>
+                        <p>Mevazor, 41uy</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                    <div class="media-body">
+                        <h3>+998 90 828 2787</h3>
+                        <p>Dushanbadan Shanbagacha 9-dan 6-gacha bo'g'lanish mumkin</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-email"></i></span>
+                    <div class="media-body">
+                        <h3>rrabdurahmon777@gmail.com</h3>
+                        <p>Emailga hat yuborishingiz ham mumkin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock main %}
+
+{% block footer %}
+{% include 'components/_footer_search.html' %}
+{% include 'components/_footer.html' %}
+{% endblock footer %}
